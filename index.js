@@ -22,12 +22,21 @@ function addToCart(target){
   total.innerText = totalPrice.toFixed(2);
 
   // Enable or disable for apply button
-  const deleteBtn =document.getElementById('coupon-btn');
+  const couponBtn =document.getElementById('coupon-btn');
   if(totalPrice > 200){
-    deleteBtn.removeAttribute('disabled');
+    couponBtn.removeAttribute('disabled');
   }
   else{
-      deleteBtn.setAttribute('disabled', true);
+    couponBtn.setAttribute('disabled', true);
+  }
+
+  // Enable or disable for apply button
+  const purchaseBtn =document.getElementById('purchase-btn');
+  if(totalPrice > 1){
+    purchaseBtn.removeAttribute('disabled');
+  }
+  else{
+    purchaseBtn.setAttribute('disabled', true);
   }
 }
 
@@ -35,7 +44,6 @@ document.getElementById('coupon-btn').addEventListener('click', function(){
   const inputText = document.getElementById('input-coupon');
   const inputTextValue = inputText.value;
   
-  // console.log(discount);
   if(inputTextValue === 'SELL200'){
     const discount = totalPrice * .20;
 
@@ -43,7 +51,6 @@ document.getElementById('coupon-btn').addEventListener('click', function(){
     totalDiscount.innerText = discount.toFixed(2);
 
     const grandTotal = totalPrice - discount;
-    // const total = document.getElementById('total');
     total.innerText = grandTotal.toFixed(2);
   }
 })
